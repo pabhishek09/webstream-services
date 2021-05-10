@@ -1,19 +1,19 @@
-const { createMeetMethod, createMeetHandler } = require('./createMeet');
-const { getMeetsMethod, getMeetsHandler } = require('./getMeets');
-const { closeMeetMethod, closeMeetHandler } = require('./closeMeet');
+import { createMeetMethod, createMeetHandler } from './createMeet'
+import { getMeetsMethod, getMeetsHandler } from './getMeets'
+import { closeMeetMethod, closeMeetHandler } from './closeMeet'
 
-module.exports = [
+export default [
   {
     path: '/meet',
-    method : createMeetMethod,
+    method: createMeetMethod,
     handler: createMeetHandler
   }, {
     path: '/meet',
-    method : getMeetsMethod,
+    method: getMeetsMethod,
     handler: getMeetsHandler
   }, {
     path: '/meet',
-    method : closeMeetMethod,
+    method: closeMeetMethod,
     handler: closeMeetHandler
-  },
-];
+  }
+]

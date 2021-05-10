@@ -1,17 +1,17 @@
-const { add }  = require('./meets');
+import { add } from './meets'
 
-const createMeetMethod = 'post';
+const createMeetMethod = 'post'
 
-function createMeetHandler(req, res) {
-  console.log(':: createMeetHandler ::');
-  console.log(req.body);
-  const { host } = req.body;
-  if (!host) return res.status(400).send({msg: 'Missing fields'});
-  const response = add(host);
-  res.send(response);
+function createMeetHandler (req, res) {
+  console.log(':: createMeetHandler ::')
+  console.log(req.body)
+  const { host } = req.body
+  if (!host) return res.status(400).send({ msg: 'Missing fields' })
+  const response = add(host)
+  res.send(response)
 }
 
-module.exports = {
+export {
   createMeetMethod,
-  createMeetHandler,
+  createMeetHandler
 }

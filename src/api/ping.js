@@ -1,5 +1,5 @@
-function ping(req, res) {
-  res.send({ data: ':: ping ::' });
+const ping = function (req, res) {
+  res.send({ data: 'success' })
 }
 
-module.exports = ping;
+export default ping

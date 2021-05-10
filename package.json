@@ -24,13 +24,20 @@
     "start": "npm run build && node ./build/bin/www",
     "build": "babel ./ -d build --only ./bin,./app.js,./src --delete-dir-on-start",
     "dev": "nodemon ./bin/www --config ./nodemon.json",
-    "test": ""
+    "test": "",
+    "lint": "eslint ./app.js ./bin/www.js ./src ",
+    "lint:fix": "eslint ./app.js ./bin/www.js ./src --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.13.15",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.15",
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
     "nodemon": "^2.0.7"
   },
   "dependencies": {

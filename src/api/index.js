@@ -1,19 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const meetRoutes = require('./meet');
-const ping = require('./ping');
+import express from 'express'
+import meetRoutes from './meet'
+import ping from './ping'
+
+const router = express.Router()
 
 const routes = [
   // Add root route files here
-  ...meetRoutes,
-];
+  ...meetRoutes
+]
 
-router.get('/ping', ping);
+router.get('/ping', ping)
 routes.forEach((route) => {
-  // Create express routes from local routes, change this to a middleware 
-  router[route.method](route.path, (req, res) => route.handler(req, res));
-});
+  // Create express routes from local routes, change this to a middleware
+  router[route.method](route.path, (req, res) => route.handler(req, res))
+})
 
-
-
-module.exports = router;
+export default router

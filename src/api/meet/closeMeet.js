@@ -1,15 +1,15 @@
-const { close }  = require('./meets');
+import { close } from './meets'
 
-const closeMeetMethod = 'delete';
+const closeMeetMethod = 'delete'
 
-function closeMeetHandler(req, res) {
-  console.log(':: closeMeetHandler ::');
-  const { id } = req.body;
-  if (!id) return res.status(400).send({msg: 'Missing fields'});
-  res.send(close(id));
+function closeMeetHandler (req, res) {
+  console.log(':: closeMeetHandler ::')
+  const { id } = req.body
+  if (!id) return res.status(400).send({ msg: 'Missing fields' })
+  res.send(close(id))
 }
 
-module.exports = {
+export {
   closeMeetMethod,
-  closeMeetHandler,
+  closeMeetHandler
 }
