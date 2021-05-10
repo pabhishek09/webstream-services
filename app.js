@@ -29,4 +29,4 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api', api)
 
-module.exports = server
+export default server
