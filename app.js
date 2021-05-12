@@ -5,22 +5,36 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import http from 'http'
 import cors from 'cors'
+import dotenv from 'dotenv';
+
 
 import api from './src/api'
 import onIoConnect from './src/socket/index'
 
+dotenv.config()
 const app = express()
 const server = http.createServer(app)
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(' ')
 const io = socketio(server, {
   cors: {
-    origin: ['https://webstream.netlify.app']
+    origin: allowedOrigins
   },
   path: '/signal/'
 })
 io.on('connection', onIoConnect)
 
-app.use(cors('https://webstream.netlify.app'))
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions))
+
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
