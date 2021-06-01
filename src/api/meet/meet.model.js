@@ -23,7 +23,8 @@ const meetSchema = new Schema({
   },
   startTime: {
     type: Date,
-    required: true,
+    required: false,
+    default: new Date().toISOString(),
   },
   endTime: {
     type: Date,
