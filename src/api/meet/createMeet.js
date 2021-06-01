@@ -1,13 +1,20 @@
-import { add } from './meets'
+import MeetModel from './meet.model';
 
 const createMeetMethod = 'post'
 
-function createMeetHandler (req, res) {
+async function createMeetHandler (req, res) {
   console.log(':: createMeetHandler ::')
-  console.log(req.body)
-  const { host } = req.body
-  if (!host) return res.status(400).send({ msg: 'Missing fields' })
-  const response = add(host)
+  const body = req.body
+  let response
+  try {
+    const meetModel = new MeetModel(body)
+    const validation = meetModel.validateSync()
+    if (validation && validation.errors) res.status(400).send({ msg: validation.message })
+    response = await meetModel.save()
+  }
+  catch (err) {
+    res.status(500).send({ msg: err.msg || 'Error in creating meet' })
+  }
   res.send(response)
 }
 

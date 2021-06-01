@@ -1,13 +1,22 @@
-import { get } from './meets'
+import MeetModel from './meet.model';
 
 const getMeetsMethod = 'get'
 
-function getMeetsHandler (req, res) {
+async function getMeetsHandler (req, res) {
   console.log(':: getMeetsHandler ::')
   const meetId = req.query.id
-  const meet = get(meetId)
-  if (meetId && !meet) return res.status(400).send({ msg: 'Invalid meet id' })
-  res.send({ data: meet })
+  let response
+  try {
+    if (meetId) {
+      response = await MeetModel.findById(meetId)
+    } else {
+      response = await MeetModel.find()
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ msg: err.msg || 'Error in fetching meet' })
+  }
+  res.send(response)
 }
 
 export {
