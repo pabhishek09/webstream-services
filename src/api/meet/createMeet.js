@@ -9,7 +9,7 @@ async function createMeetHandler (req, res) {
   try {
     const meetModel = new MeetModel(body)
     const validation = meetModel.validateSync()
-    if (validation && validation.errors) res.status(400).send({ msg: validation.message })
+    if (validation && validation.errors) return res.status(400).send({ msg: validation.message })
     response = await meetModel.save()
   }
   catch (err) {

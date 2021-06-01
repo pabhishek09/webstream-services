@@ -1,5 +1,6 @@
 import { createMeetMethod, createMeetHandler } from './createMeet'
 import { getMeetsMethod, getMeetsHandler } from './getMeets'
+import { endMeetMethod, endMeetHandler } from './endMeet'
 
 export default [
   {
@@ -10,5 +11,9 @@ export default [
     path: '/meet',
     method: getMeetsMethod,
     handler: getMeetsHandler
+  }, {
+    path: '/meet',
+    method: endMeetMethod,
+    handler: endMeetHandler
   }
 ]
