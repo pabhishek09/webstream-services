@@ -50,6 +50,8 @@
     "debug": "~2.6.9",
     "dotenv": "^9.0.2",
     "express": "~4.16.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^5.12.12",
     "morgan": "~1.9.1",
     "socket.io": "^4.0.1"
   }
