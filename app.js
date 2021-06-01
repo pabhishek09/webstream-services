@@ -12,13 +12,11 @@ const app = express()
 const server = http.createServer(app) 
 
 connect().then(() => {
-  console.log('1')
   socket(server)
   middlewares(app)
   app.use('/api', api)
 }).catch((err) => {
   console.log(err);
-  console.log('2')
   process.exit(1)
 })
 
