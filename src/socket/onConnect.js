@@ -54,6 +54,14 @@ function onConnect (socket) {
     socket.broadcast.to(event.canditate_to).emit('private_message', event)
   })
 
+  socket.on('close-connection', (event) => {
+    // message_by: socket id of sender
+    // message_to: socket id of connection
+    // message_content: content of the message
+    console.log(`:: Sending close-connection by ${event.id}`)
+    socket.broadcast.to(event.to).emit('close-connection', event)
+  })
+
 }
 
 export default onConnect
