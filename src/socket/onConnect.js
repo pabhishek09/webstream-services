@@ -62,6 +62,14 @@ function onConnect (socket) {
     socket.broadcast.to(event.to).emit('close-connection', event)
   })
 
+  socket.on('end-meeting', (event) => {
+    // message_by: socket id of sender
+    // message_to: socket id of connection
+    // message_content: content of the message
+    console.log(`:: end-meeting :: ${event.id}`)
+    socket.broadcast.to(event.to).emit('end-meeting');
+  })
+
 }
 
 export default onConnect
